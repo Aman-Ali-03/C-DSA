@@ -13,6 +13,8 @@ void delete_start();
 void delete_last();
 void add_speci_loc();
 void delete_speci_loc();
+void count();
+void search();
 int main()
 {
     int choice = 0;
@@ -26,7 +28,9 @@ int main()
         printf("\n5. Delete Node At Specific Location.");
         printf("\n6. Delete from Begining.");
         printf("\n7. Delete from Last.");
-        printf("\n8. Exit.");
+        printf("\n8. Count Number Of Node.");
+        printf("\n9. Search Element.");
+        printf("\n10. Exit.");
         printf("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
         printf("\nEnter your chice: ");
         scanf("%d", &choice);
@@ -52,7 +56,14 @@ int main()
             break;
         case 7:
             delete_last();
+            break;
         case 8:
+            count();
+            break;
+        case 9:
+            search();
+            break;
+        case 10:
             break;
         default:
             printf("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -65,7 +76,7 @@ int main()
 
 void addbegining()
 {
-    printf("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    printf("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     new_node = (struct node *)malloc(sizeof(struct node));
     printf("Enter your element: ");
     scanf("%d", &new_node->data);
@@ -91,14 +102,14 @@ void display()
     }
     else
     {
-        printf("=====================================================================================================================");
+        printf("===================================================================================\n");
         temp = head;
         while (temp != NULL)
         {
             printf("%d\t", temp->data);
             temp = temp->next;
         }
-        printf("\n=====================================================================================================================");
+        printf("\n==================================================================================\n");
     }
     return;
 }
@@ -183,4 +194,42 @@ void delete_speci_loc()
         temp = temp->next;
     }
     temp->next = hold;
+}
+
+void count()
+{
+    int counter=0;
+    temp = head;
+    while(temp!=NULL)
+    {
+        counter++;
+        temp = temp->next;
+    }
+    printf("Linked list have %d Number of nodes.",counter);
+}
+
+void search()
+{
+    int counter=-1;
+    int find=-1;
+    printf("Enter your element: ");
+    scanf("%d",&find);
+    temp = head;
+    while(temp!=NULL)
+    {
+        counter++;
+        if(temp->data==find)
+        {
+            break;
+        }
+        temp = temp->next;
+    }
+    if(counter!=-1)
+    {
+        printf("Element found at Node no. %d.",counter+1);
+    }
+    else
+    {
+        printf("Element not found at the linked list.");
+    }
 }
