@@ -86,9 +86,9 @@ void add_node()
     }
     else
     {
-        head->left = new;
-        new->right = NULL;
         new->right = head;
+        new->left = NULL;
+        head->left = new;
         head = new;
     }
 }
@@ -114,3 +114,76 @@ void add_last()
     }
 }
 
+void add_spe_node()
+{
+    int location = 0;
+    new = (struct node*)malloc(sizeof(struct node));
+    printf("Enter your element: ");
+    scanf("%d",&new->data);
+    printf("Enter the Location: ");
+    scanf("%d",&location);
+    temp = head;
+    for(int i=1; i<location; i++)
+    {
+        temp = temp->right;
+    }
+    new -> left = temp;
+    new -> right = temp -> right;
+    temp -> right = new;
+}
+
+void delete_start()
+{
+    printf("%d is deleted.",head->data);
+    temp = head->right;
+    free(head);
+    head = temp;
+}
+
+void delete_last()
+{
+    printf("%d is deleted.",least->data);
+    temp = least->left;
+    free(least);
+    temp -> right = NULL;
+    least = temp;
+}
+
+void delete_spe_node()
+{
+    int location = 0;
+    printf("Enter your Node Position: ");
+    scanf("%d",&location);
+    temp = head;
+    for(int i=2; i<location; i++)
+    {
+        temp = temp->right;
+    }
+    printf("%d is deleted from Linked list.",temp->data);
+    new = temp->right;
+    temp->right = new->right;
+    new = temp->right;
+    new->left = temp;
+    free(temp);
+}
+
+void display()
+{
+    temp = head;
+    while(temp!=NULL)
+    {
+        printf("%d    ",temp->data);
+        temp = temp->right;
+    }
+}
+
+void search()
+{
+    
+}
+
+void count()
+{
+
+
+}
