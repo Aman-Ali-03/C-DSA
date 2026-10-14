@@ -9,6 +9,7 @@ struct node
 struct node *root=NULL,*new;
 void add_node(struct node *,struct node *);
 void preorder_traversal(struct node *);
+void postorder_traversal(struct node *);
 void main()
 {
     int choice=0;
@@ -17,6 +18,7 @@ void main()
         printf("\n===========================================================");
         printf("\n1. Add node.");
         printf("\n2. Preorder Traversal.");
+        printf("\n3. Post Order Traversal.");
         printf("\n===========================================================");
         printf("\nEnter your choice: ");
         scanf("%d",&choice);
@@ -38,6 +40,9 @@ void main()
                 break;
             case 2:
                 preorder_traversal(root);
+                break;
+            case 3:
+                postorder_traversal(root);
                 break;
         }
     } while (choice!=22);
@@ -71,4 +76,12 @@ void preorder_traversal(struct node *rooot)
     printf("%d    ",rooot->data);
     preorder_traversal(rooot->left);
     preorder_traversal(rooot->right);
+}
+
+void postorder_traversal(struct node *rooot)
+{
+    if(rooot==NULL) return;
+    postorder_traversal(rooot->left);
+    postorder_traversal(rooot->right);
+    printf("%d  ",rooot->data);
 }
