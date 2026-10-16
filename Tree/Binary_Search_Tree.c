@@ -10,6 +10,7 @@ struct node *root=NULL,*new;
 void add_node(struct node *,struct node *);
 void preorder_traversal(struct node *);
 void postorder_traversal(struct node *);
+void inorder_traversal(struct node *);
 void main()
 {
     int choice=0;
@@ -84,4 +85,12 @@ void postorder_traversal(struct node *rooot)
     postorder_traversal(rooot->left);
     postorder_traversal(rooot->right);
     printf("%d  ",rooot->data);
+}
+
+void inorder_traversal(struct node *rooot)
+{
+    if(rooot==NULL) return;
+    inorder_traversal(rooot->left);
+    printf("%d   ",rooot->data);
+    inorder_traversal(rooot->right);
 }
